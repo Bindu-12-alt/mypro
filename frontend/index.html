@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoadRescue - Smart Vehicle Breakdown Assistance</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+    .role-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .role-card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+    .role-card:hover {
+      transform: translateY(-10px);
+    }
+    .role-card h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    .role-card p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🚗 RoadRescue</h1>
+    <p>Smart Vehicle Breakdown Assistance and Service Management System</p>
+    <p>Instant connection with nearby mechanics for faster, safer roadside support</p>
+  </div>
+
+  <div class="container">
+    <div class="role-cards">
+      <div class="role-card">
+        <h2>👤 User</h2>
+        <p>Request vehicle assistance with real-time location tracking</p>
+        <button class="btn btn-primary" onclick="window.location.href='module1/user-login.html'">User Login</button>
+        <br><br>
+        <button class="btn btn-success" onclick="window.location.href='module1/user-register.html'">Register</button>
+      </div>
+
+      <div class="role-card">
+        <h2>🔧 Mechanic</h2>
+        <p>Accept service requests and help users in need</p>
+        <button class="btn btn-primary" onclick="window.location.href='module2/mechanic-login.html'">Mechanic Login</button>
+        <br><br>
+        <button class="btn btn-success" onclick="window.location.href='module2/mechanic-register.html'">Register</button>
+      </div>
+
+      <div class="role-card">
+        <h2>👨‍💼 Admin</h2>
+        <p>Monitor and manage the entire platform</p>
+        <button class="btn btn-primary" onclick="window.location.href='module4/admin-login.html'">Admin Login</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
