@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://mypro-7fa5.onrender.com/api';
+
 
 // Get token from localStorage
 function getToken() {
