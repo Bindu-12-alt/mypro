@@ -1,4 +1,4 @@
-const API_URL = 'https://mypro-7fa5.onrender.com';
+const API_URL = "https://mypro-1-8suj.onrender.com";
 
 
 // Get token from localStorage
