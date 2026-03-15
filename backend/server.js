@@ -16,7 +16,11 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: "https://mypro-two-delta.vercel.app"
+  origin: [
+    "https://mypro-two-delta.vercel.app",
+    "https://mypro-git-main-bindu-12-alts-projects.vercel.app",
+    "https://mypro-k0mnng60h-bindu-12-alts-projects.vercel.app"
+  ]
 }));
 
 app.use(express.json());
