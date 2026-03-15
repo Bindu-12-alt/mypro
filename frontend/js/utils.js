@@ -1,4 +1,4 @@
-const API_URL = "https://mypro-hhk8.onrender.com";
+const API_URL = "https://mypro-hhk8.onrender.com/api";
 
 
 // Get token from localStorage
