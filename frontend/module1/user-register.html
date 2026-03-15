@@ -52,7 +52,7 @@
       };
 
       try {
-        const result = await apiCall('/api/module1/register', 'POST', data);
+        const result = await apiCall('/module1/register', 'POST', data);
         setToken(result.token);
         setUserData(result.user);
         showAlert('Registration successful!', 'success');
