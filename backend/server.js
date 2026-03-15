@@ -15,7 +15,10 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://mypro-two-delta.vercel.app"
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
