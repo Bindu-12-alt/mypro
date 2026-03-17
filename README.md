@@ -308,6 +308,3 @@ This project is created for educational purposes.
 
 ---
 
-**Developed by:** RoadRescue Team
-**Version:** 1.0.0
-**Last Updated:** 2024
