@@ -94,8 +94,7 @@ exports.adminLogin = async (req, res) => {
     const { email, password } = req.body;
     
     const admins = [
-      { email: 'bindu@roadrescue.com', password: 'bindu@123' },
-      { email: 'surya@roadrescue.com', password: 'surya@789' }
+      { email: 'admin@roadrescue.com', password: 'admin123' }
     ];
     
     const admin = admins.find(a => a.email === email && a.password === password);

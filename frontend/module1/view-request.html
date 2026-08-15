@@ -26,13 +26,26 @@
   </div>
 
   <script src="../js/utils.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK8JSvLwL0jSQX008GIJP1tKOrcRnJX7E"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     checkAuth();
     
     const urlParams = new URLSearchParams(window.location.search);
     const requestId = urlParams.get('id');
+
+    function showLocationFallback(lat, lng) {
+      const container = document.getElementById('map');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; margin-top: 12px;">
+          <strong>Service location</strong><br>
+          Latitude: ${Number(lat).toFixed(6)}<br>
+          Longitude: ${Number(lng).toFixed(6)}<br>
+          <small>Map view is unavailable because Google Maps is not configured in this app.</small>
+        </div>
+      `;
+    }
 
     async function loadRequestDetails() {
       try {
@@ -76,6 +89,11 @@
     }
 
     function initMap(lat, lng) {
+      if (!window.google || !window.google.maps) {
+        showLocationFallback(lat, lng);
+        return;
+      }
+
       const position = { lat, lng };
       
       const map = new google.maps.Map(document.getElementById('map'), {

@@ -14,9 +14,19 @@ const app = express();
 // Connect to Database
 connectDB();
 
+const allowedOrigins = (process.env.CORS_ORIGIN || 'https://mypro-two-delta.vercel.app,https://mypro-hhk8.onrender.com,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8000,http://127.0.0.1:8000,http://localhost:3000').split(',').map(origin => origin.trim());
+
 // Middleware
 app.use(cors({
-  origin: "https://mypro-two-delta.vercel.app"
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
 }));
 
 app.use(express.json());

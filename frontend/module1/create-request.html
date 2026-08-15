@@ -55,7 +55,6 @@
   </div>
 
   <script src="../js/utils.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK8JSvLwL0jSQX008GIJP1tKOrcRnJX7E"></script>
 
   <script>
     checkAuth();
@@ -63,19 +62,38 @@
     let map;
     let marker;
 
+    function showLocationFallback(lat, lng) {
+      const container = document.getElementById('map');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; margin-top: 12px;">
+          <strong>Location captured</strong><br>
+          Latitude: ${Number(lat).toFixed(6)}<br>
+          Longitude: ${Number(lng).toFixed(6)}<br>
+          <small>Map view is unavailable because Google Maps is not configured in this app.</small>
+        </div>
+      `;
+    }
+
     function initMap(lat, lng) {
       const position = { lat, lng };
-      
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: position,
-        zoom: 15
-      });
 
-      marker = new google.maps.Marker({
-        position: position,
-        map: map,
-        title: 'Your Location'
-      });
+      if (window.google && window.google.maps) {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: position,
+          zoom: 15
+        });
+
+        marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: 'Your Location'
+        });
+        return;
+      }
+
+      showLocationFallback(lat, lng);
     }
 
     function getLocation() {
@@ -105,6 +123,11 @@
     }
 
     function getAddress(lat, lng) {
+      if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
+        document.getElementById('address').value = `Lat: ${lat}, Lng: ${lng}`;
+        return;
+      }
+
       const geocoder = new google.maps.Geocoder();
       const latlng = { lat, lng };
       

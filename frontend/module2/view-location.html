@@ -28,7 +28,6 @@
   </div>
 
   <script src="../js/utils.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK8JSvLwL0jSQX008GIJP1tKOrcRnJX7E"></script>
 
   <script>
     checkAuth();
@@ -38,19 +37,38 @@
     const lat = parseFloat(urlParams.get('lat'));
     const lng = parseFloat(urlParams.get('lng'));
 
+    function showLocationFallback(latValue, lngValue) {
+      const container = document.getElementById('map');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333;">
+          <strong>Location coordinates</strong><br>
+          Latitude: ${Number(latValue).toFixed(6)}<br>
+          Longitude: ${Number(lngValue).toFixed(6)}<br>
+          <small>Map view is unavailable because Google Maps is not configured in this app.</small>
+        </div>
+      `;
+    }
+
     function initMap() {
       const position = { lat, lng };
-      
-      const map = new google.maps.Map(document.getElementById('map'), {
-        center: position,
-        zoom: 15
-      });
 
-      new google.maps.Marker({
-        position: position,
-        map: map,
-        title: 'User Location'
-      });
+      if (window.google && window.google.maps) {
+        const map = new google.maps.Map(document.getElementById('map'), {
+          center: position,
+          zoom: 15
+        });
+
+        new google.maps.Marker({
+          position: position,
+          map: map,
+          title: 'User Location'
+        });
+        return;
+      }
+
+      showLocationFallback(lat, lng);
     }
 
     async function acceptFromMap() {

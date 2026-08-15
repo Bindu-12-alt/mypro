@@ -1,4 +1,6 @@
-const API_URL = "https://mypro-hhk8.onrender.com/api";
+const API_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ? 'http://localhost:5000/api'
+  : 'https://mypro-hhk8.onrender.com/api';
 
 
 // Get token from localStorage
